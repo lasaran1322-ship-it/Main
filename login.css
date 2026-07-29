@@ -1,172 +1,173 @@
+/* 1 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.login-container {
-    width: 100%;
-    max-width: 400px;
-}
-
-.login-box {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    padding: 40px;
-}
-
-.login-title {
-    font-size: 28px;
-    font-weight: 600;
-    color: #1a202c;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.login-subtitle {
-    font-size: 14px;
-    color: #718096;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #2d3748;
-    margin-bottom: 8px;
-}
-
-.form-input {
-    padding: 12px 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    font-family: inherit;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.form-input::placeholder {
-    color: #cbd5e0;
-}
-
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    margin-top: 8px;
-}
-
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: #4a5568;
-    user-select: none;
-}
-
-.checkbox-input {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    cursor: pointer;
-    accent-color: #667eea;
-}
-
-.forgot-password {
-    color: #667eea;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.forgot-password:hover {
-    color: #764ba2;
-    text-decoration: underline;
-}
-
-.login-button {
-    padding: 12px 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-}
-
-.login-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-}
-
-.login-button:active {
-    transform: translateY(0);
-}
-
-.login-footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #718096;
-}
-
-.signup-link {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.signup-link:hover {
-    color: #764ba2;
-    text-decoration: underline;
-}
-
-/* Responsive design for mobile devices */
-@media (max-width: 480px) {
-    .login-box {
-        padding: 30px 20px;
-    }
-
-    .login-title {
-        font-size: 24px;
-    }
-
-    .form-options {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-}
+    /* 2 */margin: 0;
+    /* 3 */padding: 0;
+    /* 4 */box-sizing: border-box;
+/* 5 */}
+/* 6 */
+/* 7 */body {
+    /* 8 */font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    /* 9 */background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* 10 */min-height: 100vh;
+    /* 11 */display: flex;
+    /* 12 */justify-content: center;
+    /* 13 */align-items: center;
+    /* 14 */padding: 20px;
+/* 15 */}
+/* 16 */
+/* 17 */.login-container {
+    /* 18 */width: 100%;
+    /* 19 */max-width: 400px;
+/* 20 */}
+/* 21 */
+/* 22 */.login-box {
+    /* 23 */background: white;
+    /* 24 */border-radius: 12px;
+    /* 25 */box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    /* 26 */padding: 40px;
+/* 27 */}
+/* 28 */
+/* 29 */.login-title {
+    /* 30 */font-size: 28px;
+    /* 31 */font-weight: 600;
+    /* 32 */color: #1a202c;
+    /* 33 */margin-bottom: 8px;
+    /* 34 */text-align: center;
+/* 35 */}
+/* 36 */
+/* 37 */.login-subtitle {
+    /* 38 */font-size: 14px;
+    /* 39 */color: #718096;
+    /* 40 */text-align: center;
+    /* 41 */margin-bottom: 30px;
+/* 42 */}
+/* 43 */
+/* 44 */.login-form {
+    /* 45 */display: flex;
+    /* 46 */flex-direction: column;
+    /* 47 */gap: 20px;
+/* 48 */}
+/* 49 */
+/* 50 */.form-group {
+    /* 51 */display: flex;
+    /* 52 */flex-direction: column;
+/* 53 */}
+/* 54 */
+/* 55 */.form-label {
+    /* 56 */font-size: 14px;
+    /* 57 */font-weight: 500;
+    /* 58 */color: #2d3748;
+    /* 59 */margin-bottom: 8px;
+/* 60 */}
+/* 61 */
+/* 62 */.form-input {
+    /* 63 */padding: 12px 16px;
+    /* 64 */border: 1px solid #e2e8f0;
+    /* 65 */border-radius: 8px;
+    /* 66 */font-size: 14px;
+    /* 67 */transition: all 0.3s ease;
+    /* 68 */font-family: inherit;
+/* 69 */}
+/* 70 */
+/* 71 */.form-input:focus {
+    /* 72 */outline: none;
+    /* 73 */border-color: #667eea;
+    /* 74 */box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+/* 75 */}
+/* 76 */
+/* 77 */.form-input::placeholder {
+    /* 78 */color: #cbd5e0;
+/* 79 */}
+/* 80 */
+/* 81 */.form-options {
+    /* 82 */display: flex;
+    /* 83 */justify-content: space-between;
+    /* 84 */align-items: center;
+    /* 85 */font-size: 13px;
+    /* 86 */margin-top: 8px;
+/* 87 */}
+/* 88 */
+/* 89 */.checkbox-label {
+    /* 90 */display: flex;
+    /* 91 */align-items: center;
+    /* 92 */cursor: pointer;
+    /* 93 */color: #4a5568;
+    /* 94 */user-select: none;
+/* 95 */}
+/* 96 */
+/* 97 */.checkbox-input {
+    /* 98 */width: 16px;
+    /* 99 */height: 16px;
+    /* 100 */margin-right: 8px;
+    /* 101 */cursor: pointer;
+    /* 102 */accent-color: #667eea;
+/* 103 */}
+/* 104 */
+/* 105 */.forgot-password {
+    /* 106 */color: #667eea;
+    /* 107 */text-decoration: none;
+    /* 108 */transition: color 0.3s ease;
+/* 109 */}
+/* 110 */
+/* 111 */.forgot-password:hover {
+    /* 112 */color: #764ba2;
+    /* 113 */text-decoration: underline;
+/* 114 */}
+/* 115 */
+/* 116 */.login-button {
+    /* 117 */padding: 12px 16px;
+    /* 118 */background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* 119 */color: white;
+    /* 120 */border: none;
+    /* 121 */border-radius: 8px;
+    /* 122 */font-size: 15px;
+    /* 123 */font-weight: 600;
+    /* 124 */cursor: pointer;
+    /* 125 */transition: all 0.3s ease;
+    /* 126 */margin-top: 10px;
+/* 127 */}
+/* 128 */
+/* 129 */.login-button:hover {
+    /* 130 */transform: translateY(-2px);
+    /* 131 */box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+/* 132 */}
+/* 133 */
+/* 134 */.login-button:active {
+    /* 135 */transform: translateY(0);
+/* 136 */}
+/* 137 */
+/* 138 */.login-footer {
+    /* 139 */text-align: center;
+    /* 140 */margin-top: 20px;
+    /* 141 */font-size: 14px;
+    /* 142 */color: #718096;
+/* 143 */}
+/* 144 */
+/* 145 */.signup-link {
+    /* 146 */color: #667eea;
+    /* 147 */text-decoration: none;
+    /* 148 */font-weight: 500;
+    /* 149 */transition: color 0.3s ease;
+/* 150 */}
+/* 151 */
+/* 152 */.signup-link:hover {
+    /* 153 */color: #764ba2;
+    /* 154 */text-decoration: underline;
+/* 155 */}
+/* 156 */
+/* 157 *//* Responsive design for mobile devices */
+/* 158 */@media (max-width: 480px) {
+    /* 159 */.login-box {
+        /* 160 */padding: 30px 20px;
+    /* 161 */}
+/* 162 */
+    /* 163 */.login-title {
+        /* 164 */font-size: 24px;
+    /* 165 */}
+/* 166 */
+    /* 167 */.form-options {
+        /* 168 */flex-direction: column;
+        /* 169 */align-items: flex-start;
+        /* 170 */gap: 12px;
+    /* 171 */}
+/* 172 */}
