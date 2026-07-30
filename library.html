@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --white: #ffffff;
+            --dark: #2c3e50;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* ===== LOGIN PAGE ===== */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-card h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-size: 28px;
+        }
+
+        .login-card .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-card label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .login-card input,
+        .login-card select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .login-card input:focus,
+        .login-card select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .login-card button {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .login-card button:hover {
+            background: #2980b9;
+        }
+
+        .login-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 15px;
+        }
+
+        /* ===== DASHBOARD ===== */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .navbar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--secondary);
+        }
+
+        .nav-btn.logout {
+            background: var(--danger);
+        }
+
+        .nav-btn.logout:hover {
+            background: #c0392b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input,
+        .search-bar select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 14px;
+            flex: 1;
+        }
+
+        /* ===== BOOKS GRID ===== */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .book-info {
+            padding: 15px;
+        }
+
+        .book-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .book-info p {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .book-availability {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .book-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .book-actions button {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-borrow {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-borrow:hover {
+            background: #229954;
+        }
+
+        .btn-reserve {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .btn-reserve:hover {
+            background: #2980b9;
+        }
+
+        .btn-return {
+            background: var(--warning);
+            color: var(--white);
+        }
+
+        .btn-return:hover {
+            background: #d68910;
+        }
+
+        .btn-cancel {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-cancel:hover {
+            background: #c0392b;
+        }
+
+        /* ===== TABLES ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+        }
+
+        .empty-state p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* ===== NOTIFICATIONS ===== */
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            animation: slideIn 0.3s;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                flex-wrap: wrap;
+            }
+
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .data-table {
+                font-size: 13px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-card">
+            <h1>📚 Library System</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label>Role:</label>
+                    <select id="role" required onchange="updateRoleDisplay()">
+                        <option value="">Select Your Role</option>
+                        <option value="member">Member</option>
+                        <option value="librarian">Librarian</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p class="login-hint">Demo: member/pass, librarian/pass, admin/pass</p>
+        </div>
+    </div>
+
+    <!-- MEMBER DASHBOARD -->
+    <div id="member-dashboard" class="dashboard">
+        <nav class="navbar">
+            <div class="navbar-brand">📚 Library - Member</div>
+            <div class="navbar-menu">
+                <button class="nav-btn active" data-section="browse">Browse</button>
+                <button class="nav-btn" data-section="borrowed">My Books</button>
+                <button class="nav-btn" data-section="reservations">Reservations</button>
+                <button class="nav-btn" data-section="fines">My Fines</button>
+                <button class="nav-btn logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- Browse Books -->
+            <section id="browse" class="section active">
+                <div class="section-header">
+                    <h2>Browse Books</h2>
+                    <div class="search-bar">
+                        <input type="text" id="search-box" placeholder="Search by title or author...">
+                        <select id="filter-category">
+                            <option value="">All Categories</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Science">Science</option>
+                            <option value="Technology">Technology</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="books-grid" class="books-grid"></div>
+            </section>
+
+            <!-- My Books -->
+            <section id="borrowed" class="section">
+                <div class="section-header">
+                    <h2>My Borrowed Books</h2>
+                </div>
+                <table class="data-table" id="borrowed-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Borrowed</th>
+                            <th>Due Date</th>
+                            <th>Days Left</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="borrowed-list"></tbody>
+                </table>
+            </section>
+
+            <!-- Reservations -->
+            <section id="reservations" class="section">
+                <div class="section-header">
+                    <h2>My Reservations</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Reserved Date</th>
+                            <th>Position</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservations-list"></tbody>
+                </table>
+            </section>
+
+            <!-- Fines -->
+            <section id="fines" class="section">
+                <div class="section-header">
+                    <h2>My Fines</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Fine Amount</th>
+                            <th>Reason</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fines-list"></tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <!-- LIBRARIAN DASHBOARD -->
+    <div id="librarian-dashboard" class="dashboard">
+        <nav class="navbar">
+            <div class="navbar-brand">📚 Library - Librarian</div>
+            <div class="navbar-menu">
+                <button class="nav-btn active" data-section="circulation">Circulation</button>
+                <button class="nav-btn" data-section="inventory">Inventory</button>
+                <button class="nav-btn" data-section="members">Members</button>
+                <button class="nav-btn logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- Circulation -->
+            <section id="circulation" class="section active">
+                <div class="section-header">
+                    <h2>Circulation Management</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Member</th>
+                            <th>Book Title</th>
+                            <th>Borrowed Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="circulation-list"></tbody>
+                </table>
+            </section>
+
+            <!-- Inventory -->
+            <section id="inventory" class="section">
+                <div class="section-header">
+                    <h2>Inventory Management</h2>
+                    <div class="search-bar">
+                        <input type="text" id="inventory-search" placeholder="Search books...">
+                    </div>
+                </div>
+                <div id="inventory-grid" class="books-grid"></div>
+            </section>
+
+            <!-- Members -->
+            <section id="members" class="section">
+                <div class="section-header">
+                    <h2>Members</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Member ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Books Borrowed</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="members-list"></tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="admin-dashboard" class="dashboard">
+        <nav class="navbar">
+            <div class="navbar-brand">📚 Library - Administrator</div>
+            <div class="navbar-menu">
+                <button class="nav-btn active" data-section="reports">Reports</button>
+                <button class="nav-btn" data-section="analytics">Analytics</button>
+                <button class="nav-btn" data-section="users">Users</button>
+                <button class="nav-btn logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- Reports -->
+            <section id="reports" class="section active">
+                <div class="section-header">
+                    <h2>Reports</h2>
+                </div>
+                <div id="reports-container"></div>
+            </section>
+
+            <!-- Analytics -->
+            <section id="analytics" class="section">
+                <div class="section-header">
+                    <h2>Analytics</h2>
+                </div>
+                <div id="analytics-container"></div>
+            </section>
+
+            <!-- Users -->
+            <section id="users" class="section">
+                <div class="section-header">
+                    <h2>System Users</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list"></tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION -->
+    <div id="notification" class="notification"></div>
+
+    <script src="library.js"></script>
+    <script>
+        // Auto-login for testing
+        if (new URLSearchParams(window.location.search).has('auto')) {
+            window.addEventListener('load', function() {
+                const role = new URLSearchParams(window.location.search).get('auto');
+                document.getElementById('username').value = 'member';
+                document.getElementById('password').value = 'pass';
+                document.getElementById('role').value = role;
+                document.getElementById('login-form').dispatchEvent(new Event('submit'));
+            });
+        }
+    </script>
+</body>
+</html>

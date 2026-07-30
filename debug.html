@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+    <style>
+        body { padding: 20px; font-family: Arial; }
+        .result { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Debug Test</h1>
+    <div class="result">
+        <p>JavaScript Version: <span id="js-version"></span></p>
+        <p>DOM Ready: <span id="dom-ready"></span></p>
+        <p>Elements found: <span id="elements-found"></span></p>
+        <p>Login Form: <span id="login-form-status"></span></p>
+    </div>
+    
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-version').textContent = 'Loaded';
+            document.getElementById('dom-ready').innerHTML = '<span class="success">YES</span>';
+            
+            const elems = document.querySelectorAll('*').length;
+            document.getElementById('elements-found').textContent = elems;
+            
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                document.getElementById('login-form-status').innerHTML = '<span class="success">Found</span>';
+            } else {
+                document.getElementById('login-form-status').innerHTML = '<span class="error">Not Found</span>';
+            }
+        });
+    </script>
+</body>
+</html>
