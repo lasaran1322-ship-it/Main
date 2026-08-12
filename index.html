@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentSpot — Find Rental Homes Across India</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top bar with brand + search -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">R</span>
+                <span class="brand-name">RentSpot</span>
+            </a>
+
+            <form class="search" id="searchForm" role="search">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/>
+                </svg>
+                <input
+                    type="search"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search by city, locality or property type…"
+                    aria-label="Search rental properties"
+                    autocomplete="off"
+                >
+                <button type="submit" class="search-button">Search</button>
+            </form>
+
+            <button class="filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="filters">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 6h16M7 12h10M10 18h4"/>
+                </svg>
+                Filters
+            </button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <!-- Filters panel -->
+        <aside class="filters" id="filters" aria-label="Property filters">
+            <div class="filters-head">
+                <h2>Filters</h2>
+                <button type="button" class="link-button" id="resetFilters">Clear all</button>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label" for="cityFilter">Locality / City</label>
+                <select id="cityFilter" class="filter-control">
+                    <option value="">All locations</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label" for="budgetFilter">
+                    Budget (monthly rent) — up to <span id="budgetValue" class="filter-value">Any</span>
+                </label>
+                <input type="range" id="budgetFilter" class="filter-range" min="10000" max="150000" step="1000" value="150000">
+                <div class="range-bounds"><span>₹10K</span><span>₹1.5L</span></div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label" for="advanceFilter">
+                    Advance / Deposit — up to <span id="advanceValue" class="filter-value">Any</span>
+                </label>
+                <input type="range" id="advanceFilter" class="filter-range" min="40000" max="900000" step="10000" value="900000">
+                <div class="range-bounds"><span>₹40K</span><span>₹9L</span></div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label" for="availabilityFilter">Availability</label>
+                <select id="availabilityFilter" class="filter-control">
+                    <option value="">Any time</option>
+                    <option value="immediate">Available immediately</option>
+                    <option value="30">Within 30 days</option>
+                    <option value="90">Within 90 days</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label" for="metroFilter">
+                    Proximity to Metro / Railway — within <span id="metroValue" class="filter-value">Any</span>
+                </label>
+                <input type="range" id="metroFilter" class="filter-range" min="0.5" max="15" step="0.5" value="15">
+                <div class="range-bounds"><span>0.5 km</span><span>15 km</span></div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label" for="hospitalFilter">
+                    Proximity to Hospital — within <span id="hospitalValue" class="filter-value">Any</span>
+                </label>
+                <input type="range" id="hospitalFilter" class="filter-range" min="0.5" max="5" step="0.5" value="5">
+                <div class="range-bounds"><span>0.5 km</span><span>5 km</span></div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label" for="schoolFilter">
+                    Proximity to School — within <span id="schoolValue" class="filter-value">Any</span>
+                </label>
+                <input type="range" id="schoolFilter" class="filter-range" min="0.5" max="5" step="0.5" value="5">
+                <div class="range-bounds"><span>0.5 km</span><span>5 km</span></div>
+            </div>
+        </aside>
+
+        <!-- Results -->
+        <section class="results" aria-label="Property listings">
+            <div class="results-head">
+                <h1 class="results-title">Rental homes across India</h1>
+                <p class="results-count" id="resultsCount"></p>
+            </div>
+            <div class="property-grid" id="propertyGrid"></div>
+            <div class="empty-state" id="emptyState" hidden>
+                <h3>No properties match your filters</h3>
+                <p>Try widening your budget or clearing some filters.</p>
+                <button type="button" class="btn-primary" id="emptyReset">Clear filters</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Backdrop for mobile filter drawer -->
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <script src="data.js"></script>
+    <script src="shared.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
