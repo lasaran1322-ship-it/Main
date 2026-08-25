@@ -1,59 +1,81 @@
-<!-- 1 --><!DOCTYPE html>
-<!-- 2 --><html lang="en">
-<!-- 3 --><head>
-<!-- 4 -->    <meta charset="UTF-8">
-<!-- 5 -->    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 6 -->    <title>Login</title>
-<!-- 7 -->    <link rel="stylesheet" href="login.css">
-<!-- 8 --></head>
-<!-- 9 --><body>
-<!-- 10 -->    <div class="login-container">
-<!-- 11 -->        <div class="login-box">
-<!-- 12 -->            <h1 class="login-title">Welcome Back</h1>
-<!-- 13 -->            <p class="login-subtitle">Sign in to your account</p>
-<!-- 14 -->            
-<!-- 15 -->            <form class="login-form" id="loginForm">
-<!-- 16 -->                <div class="form-group">
-<!-- 17 -->                    <label for="email" class="form-label">Email Address</label>
-<!-- 18 -->                    <input 
-<!-- 19 -->                        type="email" 
-<!-- 20 -->                        id="email" 
-<!-- 21 -->                        name="email" 
-<!-- 22 -->                        class="form-input" 
-<!-- 23 -->                        placeholder="you@example.com"
-<!-- 24 -->                        required
-<!-- 25 -->                    >
-<!-- 26 -->                </div>
-<!-- 27 -->
-<!-- 28 -->                <div class="form-group">
-<!-- 29 -->                    <label for="password" class="form-label">Password</label>
-<!-- 30 -->                    <input 
-<!-- 31 -->                        type="password" 
-<!-- 32 -->                        id="password" 
-<!-- 33 -->                        name="password" 
-<!-- 34 -->                        class="form-input" 
-<!-- 35 -->                        placeholder="Enter your password"
-<!-- 36 -->                        required
-<!-- 37 -->                    >
-<!-- 38 -->                </div>
-<!-- 39 -->
-<!-- 40 -->                <div class="form-options">
-<!-- 41 -->                    <label class="checkbox-label">
-<!-- 42 -->                        <input type="checkbox" name="remember" class="checkbox-input">
-<!-- 43 -->                        <span>Remember me</span>
-<!-- 44 -->                    </label>
-<!-- 45 -->                    <a href="#" class="forgot-password">Forgot password?</a>
-<!-- 46 -->                </div>
-<!-- 47 -->
-<!-- 48 -->                <button type="submit" class="login-button">Sign In</button>
-<!-- 49 -->            </form>
-<!-- 50 -->
-<!-- 51 -->            <div class="login-footer">
-<!-- 52 -->                <p>Don't have an account? <a href="#" class="signup-link">Sign up here</a></p>
-<!-- 53 -->            </div>
-<!-- 54 -->        </div>
-<!-- 55 -->    </div>
-<!-- 56 -->
-<!-- 57 -->    <script src="login.js"></script>
-<!-- 58 --></body>
-<!-- 59 --></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="login-title">Welcome Back</h1>
+            <p class="login-subtitle">Sign in to your account</p>
+            
+            <form class="login-form" id="loginForm" novalidate>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="you@example.com"
+                        required
+                        aria-required="true"
+                    >
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Enter your password"
+                            required
+                            aria-required="true"
+                        >
+                        <button 
+                            type="button" 
+                            class="password-toggle" 
+                            aria-label="Toggle password visibility"
+                            id="passwordToggle"
+                            tabindex="0"
+                        >
+                            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display: none;">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember" class="checkbox-input">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-button">Sign In</button>
+            </form>
+
+            <div class="login-footer">
+                <p>Don't have an account? <a href="#" class="signup-link">Sign up here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
