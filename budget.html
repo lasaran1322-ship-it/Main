@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Budget Planner</title>
+    <link rel="stylesheet" href="budget.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>💰 Monthly Budget Planner</h1>
+                <div class="header-actions">
+                    <input type="month" id="budget-month" aria-label="Select month">
+                    <button class="btn btn-secondary" id="btn-print">Export PDF</button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Summary Cards -->
+            <section class="summary-grid">
+                <div class="card card-income">
+                    <span class="card-label">Total Income</span>
+                    <span class="card-value" id="stat-income">$0.00</span>
+                </div>
+                <div class="card card-expense">
+                    <span class="card-label">Total Expenses</span>
+                    <span class="card-value" id="stat-expense">$0.00</span>
+                </div>
+                <div class="card card-balance">
+                    <span class="card-label">Net Balance</span>
+                    <span class="card-value" id="stat-balance">$0.00</span>
+                </div>
+                <div class="card card-savings">
+                    <span class="card-label">Savings Rate</span>
+                    <span class="card-value" id="stat-savings-rate">0%</span>
+                </div>
+            </section>
+
+            <!-- Input + Chart -->
+            <section class="two-col">
+                <div class="panel">
+                    <h2>Add Transaction</h2>
+                    <form id="tx-form" class="tx-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tx-type">Type</label>
+                                <select id="tx-type" required>
+                                    <option value="expense">Expense</option>
+                                    <option value="income">Income</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tx-category">Category</label>
+                                <select id="tx-category" required></select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tx-description">Description</label>
+                                <input type="text" id="tx-description" maxlength="80" placeholder="e.g. Groceries at market">
+                            </div>
+                            <div class="form-group">
+                                <label for="tx-amount">Amount</label>
+                                <input type="number" id="tx-amount" min="0.01" step="0.01" required placeholder="0.00">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Transaction</button>
+                    </form>
+                </div>
+
+                <div class="panel">
+                    <h2>Expense Breakdown</h2>
+                    <div class="chart-wrap">
+                        <canvas id="doughnut-chart" width="260" height="260" aria-label="Expense category breakdown chart" role="img"></canvas>
+                        <ul class="chart-legend" id="chart-legend"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Savings Goal -->
+            <section class="panel">
+                <h2>Savings Goal</h2>
+                <div class="goal-row">
+                    <div class="goal-controls">
+                        <div class="form-group">
+                            <label for="goal-name">Goal Name</label>
+                            <input type="text" id="goal-name" maxlength="60" placeholder="e.g. Emergency Fund">
+                        </div>
+                        <div class="form-group">
+                            <label for="goal-target">Target Amount ($)</label>
+                            <input type="number" id="goal-target" min="1" step="0.01" placeholder="5000">
+                        </div>
+                        <div class="form-group">
+                            <label for="goal-saved">Already Saved ($)</label>
+                            <input type="number" id="goal-saved" min="0" step="0.01" placeholder="0">
+                        </div>
+                        <button class="btn btn-primary" id="btn-save-goal">Update Goal</button>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="goal-stats">
+                            <span id="goal-title" class="goal-title">No savings goal set</span>
+                            <span id="goal-detail" class="goal-detail">$0 of $0 saved (0%)</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="goal-progress-fill"></div>
+                        </div>
+                        <div class="goal-stats">
+                            <span id="goal-remaining">Remaining: $0</span>
+                            <span id="goal-monthly">Projected from this month's net balance: $0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transaction History -->
+            <section class="panel">
+                <h2>Transaction History</h2>
+                <table class="tx-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th class="amount-col">Amount</th>
+                            <th class="no-print">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tx-table-body"></tbody>
+                </table>
+                <p class="empty-msg" id="tx-empty-msg">No transactions yet for this month. Add one above to get started.</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Monthly Budget Planner. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="budget.js"></script>
+</body>
+</html>
