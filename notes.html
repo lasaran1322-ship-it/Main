@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes</title>
+    <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+    <div class="notes-container">
+        <header class="notes-header">
+            <h1 class="notes-title">My Notes</h1>
+            <p class="notes-subtitle">Add, view and delete your notes</p>
+        </header>
+
+        <form class="note-form" id="noteForm">
+            <div class="form-group">
+                <label for="noteTitle" class="form-label">Title</label>
+                <input
+                    type="text"
+                    id="noteTitle"
+                    class="form-input"
+                    placeholder="Note title"
+                    maxlength="80"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="noteBody" class="form-label">Note</label>
+                <textarea
+                    id="noteBody"
+                    class="form-textarea"
+                    placeholder="Write your note here..."
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" class="add-button">Add Note</button>
+        </form>
+
+        <section class="notes-list-section">
+            <p class="empty-state" id="emptyState">No notes yet. Add your first note above.</p>
+            <ul class="notes-list" id="notesList"></ul>
+        </section>
+    </div>
+
+    <script src="notes.js"></script>
+</body>
+</html>
