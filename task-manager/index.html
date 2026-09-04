@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Priority Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>✅ TaskFlow</h1>
+            <p class="subtitle">Organize your tasks by priority</p>
+        </header>
+
+        <!-- Add Task Form -->
+        <section class="add-task">
+            <form id="task-form" class="task-form">
+                <input
+                    type="text"
+                    id="task-input"
+                    class="task-input"
+                    placeholder="What needs to be done?"
+                    autocomplete="off"
+                    required
+                />
+                <select id="priority-select" class="priority-select" aria-label="Task priority">
+                    <option value="high">🔴 High</option>
+                    <option value="medium" selected>🟡 Medium</option>
+                    <option value="low">🟢 Low</option>
+                </select>
+                <button type="submit" class="add-btn">Add Task</button>
+            </form>
+        </section>
+
+        <!-- Filters + Stats -->
+        <section class="controls">
+            <div class="filters" id="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="high">🔴 High</button>
+                <button class="filter-btn" data-filter="medium">🟡 Medium</button>
+                <button class="filter-btn" data-filter="low">🟢 Low</button>
+            </div>
+            <div class="stats" id="stats">
+                <span id="task-count">0 tasks</span>
+                <button class="clear-all-btn" id="clear-all-btn">Clear All</button>
+            </div>
+        </section>
+
+        <!-- Task List -->
+        <main>
+            <ul class="task-list" id="task-list"></ul>
+            <p class="empty-state" id="empty-state">No tasks yet. Add one above to get started! 🚀</p>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 TaskFlow. Built with HTML, CSS &amp; JavaScript.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
